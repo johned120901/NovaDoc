@@ -80,4 +80,5 @@ flutter:
   assets:
     - assets/img/LogoNovatec1.png
     - assets/img/NovatecLogoColor.png
+    - assets/img/IconError.png
 

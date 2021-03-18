@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_doc/util/color.dart';
 import 'package:nova_doc/util/resize.dart';
+import 'package:nova_doc/view/widget/app_alert_dialog.dart';
 import 'package:nova_doc/view/widget/app_button.dart';
 import 'package:nova_doc/view/widget/app_text_file.dart';
 
@@ -78,7 +79,57 @@ class _LoginPageState extends State<LoginPage> {
                     alignment: Alignment.center,
                     child: AppButton(
                       text: 'INGRESAR',
-                      onPressed: (){},
+                      onPressed: () {
+                        if (usuario.text != "" && contrasena.text != "") {
+                          Navigator.pushNamed(context, '/home');
+                        } else {
+                          showDialog(
+                              context: context,
+                              builder: (_) => AlertDialog(
+                                    title: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Image.asset('assets/img/IconError.png',width: 40, height: 40,),
+                                      ],
+                                    ),
+                                    content: SingleChildScrollView(
+                                      child: ListBody(
+                                        children: <Widget>[
+                                          Text(
+                                              'Usuario y/o contraseña incorrecta',),
+                                        ],
+                                      ),
+                                    ),
+                                    actions: <Widget>[
+                                      RaisedButton(
+
+                                        color: colorSecundario,
+                                        child: SizedBox(
+                                          child: Text(
+                                            'Aceptar',
+                                            style: TextStyle(
+                                                fontSize: 24,
+                                                color: colorPrimario),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                        shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(30),
+                                            ),
+                                            side: BorderSide(
+                                                color: colorPrimario),
+                                        ),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      ),
+
+                                    ],
+                                  ));
+                        }
+                      },
                     ),
                   )
                 ],
