@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_doc/util/color.dart';
 import 'package:nova_doc/view/widget/app_button.dart';
+import 'package:nova_doc/view/widget/app_header.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -26,66 +27,62 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      drawer: Drawer(
-        child: Column(children: [
-          Container(
-            width: 500,
-            child: DrawerHeader(
-              child: Image.asset(
-                'assets/img/NovatecLogoColor.png',
-                fit: BoxFit.contain,
-                height: 100,
-              ),
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    color: colorPrimario,
-                    width: 6,
+      drawer: AppHeader(),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.only(top: 150, left: 10, right: 10),
+              color: colorPrimario,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/certificado');
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/img/LogoCertificado.png',
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text(
+                        'Certificado',
+                        style: TextStyle(color: colorSecundario, fontSize: 30),
+                      )
+                    ],
                   ),
                 ),
               ),
             ),
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 20),
-            width: 500,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      Icons.person,
-                      color: colorPrimario,
-                      size: 50,
-                    ),
-                    Text(
-                      'Nombre Usuario',
-                      style: TextStyle(color: colorPrimario, fontSize: 40),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: height * 0.06,
-                ),
-                AppButton(text: 'Certificados', onPressed: () {}),
-                SizedBox(
-                  height: height * 0.06,
-                ),
-                AppButton(text: 'Desprendible de pago', onPressed: () {}),
-                SizedBox(
-                  height: height * 0.12,
-                ),
-                InkWell(
-                  child: Text(
-                    'Cerrar sesión',
-                    style: TextStyle(color: colorPrimario, fontSize: 40),
+            Container(
+              margin: EdgeInsets.only(top: 100, left: 10, right: 10),
+              color: colorPrimario,
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.pushNamed(context, '/desprendible');
+                  },
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'assets/img/LogoDesprendible.png',
+                        width: 100,
+                        height: 100,
+                      ),
+                      Text(
+                        'Desprendible de Pago',
+                        style: TextStyle(color: colorSecundario, fontSize: 30),
+                      )
+                    ],
                   ),
-                  onTap: () {},
-                )
-              ],
+                ),
+              ),
             ),
-          )
-        ]),
+          ],
+        ),
       ),
     );
   }

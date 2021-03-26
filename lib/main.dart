@@ -1,3 +1,5 @@
+import 'package:nova_doc/view/certificado_page.dart';
+import 'package:nova_doc/view/desprendible_page.dart';
 import 'package:nova_doc/view/home_page.dart';
 import 'package:nova_doc/view/login_page.dart';
 import 'package:flutter/material.dart';
@@ -24,6 +26,10 @@ class _NovaDocState extends State<NovaDoc> {
             return MaterialPageRoute(builder: (context) => new LoginPage());
           case '/home':
             return MaterialPageRoute(builder: (context) => new HomePage());
+          case '/certificado':
+            return MaterialPageRoute(builder: (context) => new CertificadoPage());
+          case '/desprendible':
+            return MaterialPageRoute(builder: (context) => new DesprediblePage());
           default:
             return null;
         }
