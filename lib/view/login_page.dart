@@ -17,6 +17,7 @@ class _LoginPageState extends State<LoginPage> {
     TextEditingController usuario = new TextEditingController();
     TextEditingController contrasena = new TextEditingController();
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         backgroundColor: colorPrimario,
         toolbarHeight: 100,

@@ -47,11 +47,19 @@ class AppHeader extends StatelessWidget {
               SizedBox(
                 height: height * 0.06,
               ),
-              AppButton(text: 'Certificados', onPressed: () {}),
+              AppButton(
+                  text: 'Certificados',
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/certificado');
+                  }),
               SizedBox(
                 height: height * 0.06,
               ),
-              AppButton(text: 'Desprendible de pago', onPressed: () {}),
+              AppButton(
+                  text: 'Desprendible de pago',
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/desprendible');
+                  }),
               SizedBox(
                 height: height * 0.12,
               ),
@@ -60,7 +68,9 @@ class AppHeader extends StatelessWidget {
                   'Cerrar sesión',
                   style: TextStyle(color: colorPrimario, fontSize: 40),
                 ),
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamedAndRemoveUntil(context, '/login', (route) => false);
+                },
               )
             ],
           ),

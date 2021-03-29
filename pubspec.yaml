@@ -23,6 +23,7 @@ environment:
 dependencies:
   google_fonts: ^1.1.2
   hexcolor: ^1.0.6
+  advance_pdf_viewer: any
   flutter:
     sdk: flutter
 
@@ -83,4 +84,4 @@ flutter:
     - assets/img/IconError.png
     - assets/img/LogoCertificado.png
     - assets/img/LogoDesprendible.png
-
+    - assets/pdf/example.pdf

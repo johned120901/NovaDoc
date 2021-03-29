@@ -23,9 +23,17 @@ class _HomePageState extends State<HomePage> {
               'assets/img/LogoNovatec1.png',
               fit: BoxFit.contain,
               height: 50,
+
             ),
           ],
         ),
+        actions: [
+          FlatButton(
+            padding: const EdgeInsets.only(right: 10),
+            child: Icon(Icons.home, color: colorSecundario,),
+            onPressed: () => Navigator.pushNamed(context, '/home'),
+          )
+        ],
       ),
       drawer: AppHeader(),
       body: Container(
