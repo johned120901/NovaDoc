@@ -47,11 +47,16 @@ class _DesprediblePageState extends State<DesprediblePage> {
   ];
   String dropdownValueMonth = 'Ene';
 
-  _initPDf() async {
+  void initState() {
+    super.initState();
+    _initPDf('');
+  }
+
+  _initPDf(asset) async {
     setState(() {
       _loading = true;
     });
-    final doc = await PDFDocument.fromAsset('assets/pdf/example.pdf');
+    final doc = await PDFDocument.fromAsset(asset);
 
     setState(() {
       _doc = doc;
@@ -137,20 +142,18 @@ class _DesprediblePageState extends State<DesprediblePage> {
                     AppButton(
                         text: 'Generar',
                         onPressed: () {
-                          _initPDf();
-                          showDialog(
-                            context: context,
-
-                            builder: (_) => Container(
-                                margin: EdgeInsets.only(top: 10),
-                                height: ResizeH(height, 500),
-                                child: _loading
-                                    ? Center(
-                                        child: CircularProgressIndicator(),
-                                      )
-                                    : PDFViewer(document: _doc)),
-                          );
-                        })
+                          _initPDf('assets/pdf/example.pdf');
+                        }),
+                    Container(
+                      child: Container(
+                          margin: EdgeInsets.only(top: 10),
+                          height: ResizeH(height, 500),
+                          child: _loading
+                              ? Center(
+                                  child: CircularProgressIndicator(),
+                                )
+                              : PDFViewer(document: _doc)),
+                    )
                   ],
                 ),
               ),
