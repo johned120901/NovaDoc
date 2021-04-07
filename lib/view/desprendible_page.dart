@@ -4,6 +4,7 @@ import 'package:nova_doc/util/color.dart';
 import 'package:nova_doc/util/resize.dart';
 import 'package:nova_doc/view/widget/app_button.dart';
 import 'package:nova_doc/view/widget/app_header.dart';
+import 'package:nova_doc/view/widget/app_select.dart';
 
 class DesprediblePage extends StatefulWidget {
   @override
@@ -13,6 +14,38 @@ class DesprediblePage extends StatefulWidget {
 class _DesprediblePageState extends State<DesprediblePage> {
   PDFDocument _doc;
   bool _loading = false;
+  List<String> itemsYear = [
+    '2008',
+    '2009',
+    '2010',
+    '2011',
+    '2012',
+    '2013',
+    '2014',
+    '2015',
+    '2016',
+    '2017',
+    '2018',
+    '2019',
+    '2020',
+    '2021'
+  ];
+  String dropdownValueYear = '2008';
+  List<String> itemsMonth = [
+    'Ene',
+    'Feb',
+    'Mar',
+    'Abr',
+    'May',
+    'Jun',
+    'Jul',
+    'Ago',
+    'Sep',
+    'Oct',
+    'Nov',
+    'Dic'
+  ];
+  String dropdownValueMonth = 'Ene';
 
   _initPDf() async {
     setState(() {
@@ -69,25 +102,58 @@ class _DesprediblePageState extends State<DesprediblePage> {
                 child: Column(
                   children: [
                     Container(
+                      margin: EdgeInsets.only(left: 20, right: 20),
                       child: Row(
-
+                        children: [
+                          Container(
+                              margin: EdgeInsets.only(left: 30, right: 15),
+                              child: AppSelect(
+                                items: itemsYear,
+                                dropdownValue: dropdownValueYear,
+                                onChanged: (String newValue) {
+                                  setState(() {
+                                    dropdownValueYear = newValue;
+                                  });
+                                },
+                              )),
+                          Container(
+                            margin: EdgeInsets.only(left: 55),
+                            child: AppSelect(
+                              items: itemsMonth,
+                              dropdownValue: dropdownValueMonth,
+                              onChanged: (String newValue) {
+                                setState(() {
+                                  dropdownValueMonth = newValue;
+                                });
+                              },
+                            ),
+                          )
+                        ],
                       ),
                     ),
                     SizedBox(
                       height: height * 0.06,
                     ),
-                    AppButton(text: 'Generar', onPressed: (){})
+                    AppButton(
+                        text: 'Generar',
+                        onPressed: () {
+                          _initPDf();
+                          showDialog(
+                            context: context,
+
+                            builder: (_) => Container(
+                                margin: EdgeInsets.only(top: 10),
+                                height: ResizeH(height, 500),
+                                child: _loading
+                                    ? Center(
+                                        child: CircularProgressIndicator(),
+                                      )
+                                    : PDFViewer(document: _doc)),
+                          );
+                        })
                   ],
                 ),
               ),
-              Container(
-                  margin: EdgeInsets.only(top: 10),
-                  height: ResizeH(height, 500),
-                  child: _loading
-                      ? Center(
-                          child: CircularProgressIndicator(),
-                        )
-                      : PDFViewer(document: _doc)),
             ],
           ),
         ));
